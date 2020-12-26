@@ -1,0 +1,88 @@
+.carouselSlider {
+  position: relative;
+  margin-top: 4rem;
+  img {
+    height: 85vh;
+    object-fit: contain;
+    object-position: center;
+    z-index: 2;
+
+    @include breakpoint-down(sm) {
+      height: 60vh;
+    }
+  }
+
+  .content {
+    @include breakpoint-down(sm) {
+      text-align: center;
+      padding-top: 2rem;
+
+      .brand {
+        font-size: 0.8rem;
+      }
+      .name {
+        font-size: 1.5rem;
+      }
+      .price {
+        font-size: 1rem;
+      }
+      .buyNow {
+        padding: 0.4rem 1.2rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .brand {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: $text-grey;
+  }
+
+  .name {
+    font-weight: bolder;
+    font-size: 3rem;
+    @include breakpoint-down(sm) {
+      font-size: 1.8rem;
+    }
+  }
+
+  .price {
+    margin: 1rem 0;
+    font-weight: bold;
+  }
+
+  .buyNow {
+    @include mainBtn;
+  }
+
+  .carousel {
+    background-color: hsla(194, 21%, 88%, 0.561);
+    &-control-next,
+    &-control-prev {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      margin: auto;
+      background: $bg-primary;
+    }
+    &-control-next {
+      right: 40px;
+      @include breakpoint-down(sm) {
+        right: 20px;
+      }
+    }
+    &-control-prev {
+      left: 40px;
+      @include breakpoint-down(sm) {
+        left: 20px;
+      }
+    }
+
+    &-indicators {
+      li {
+        background-color: $bg-primary;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: $primary-family;
+}
+
+.priceDisplay {
+  span:nth-child(1) {
+    font-size: 1.2rem;
+    font-weight: bold;
+    i {
+      font-size: 1.1rem;
+      margin-right: 2px;
+    }
+  }
+
+  span:nth-child(2) {
+    margin-left: 5px;
+    font-size: 1rem;
+    text-decoration: line-through;
+    color: $text-grey;
+    i {
+      font-size: 0.9rem;
+      text-decoration: line-through;
+    }
+  }
+}
+
+.ratingDisplay {
+  background-color: $bg-secondary;
+  width: 65px;
+  padding: 0.4rem 0.6rem;
+  color: $text-light;
+  margin: 1rem 0rem;
+  font-size: 0.9rem;
+  span:nth-child(2) {
+    margin-left: 5px;
+  }
+  span:nth-child(1) {
+    font-weight: bolder;
+  }
+}

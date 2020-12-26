@@ -1,0 +1,73 @@
+.NavBar {
+  width: 100%;
+  padding: 12px 0;
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  background-color: lighten($text-light, 5%);
+
+  &__logo {
+    cursor: pointer;
+    span {
+      font-size: 1.2rem;
+      font-weight: bolder;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    @include breakpoint-down(xs) {
+      margin-top: -15px;
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  &__container {
+    width: 90%;
+    margin: 0 auto;
+    @include flex(row, space-between);
+  }
+
+  &__menu {
+    @include flex(row, space-between);
+    li {
+      list-style: none;
+      &:first-child {
+        margin-right: 25px;
+      }
+
+      sup {
+        top: -1rem;
+        font-size: 1rem;
+        .badge {
+          background-color: $bg-danger;
+        }
+        @include breakpoint-down(xs) {
+          font-size: 0.8rem;
+        }
+      }
+
+      i {
+        color: $bg-secondary;
+        font-size: 1.5rem;
+        @include breakpoint-down(xs) {
+          font-size: 1.3rem;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: $text-dark !important;
+      }
+      &:last-child a {
+        background-color: $bg-secondary;
+        font-weight: bolder;
+        color: $text-light !important;
+        padding: 0.4rem 2rem;
+        @include breakpoint-down(xs) {
+          padding: 0.4rem 1.2rem;
+        }
+      }
+    }
+  }
+}

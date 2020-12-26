@@ -1,0 +1,74 @@
+//400px,600px,800px,1024px
+$breakpoints-up: (
+  "xs": "25rem",
+  "sm": "37.5rem",
+  "md": "50rem",
+  "lg": "64rem",
+);
+
+// 400px,600px,800px,1024px
+$breakpoints-down: (
+  "xs": "24.99rem",
+  "sm": "37.99rem",
+  "md": "49.99rem",
+  "lg": "63.99rem",
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down, $size)) {
+    @content;
+  }
+}
+
+@mixin only-ipad {
+  @media only screen and (min-width: 880px) and (max-width: 1185px) {
+    @content;
+  }
+}
+
+@mixin container {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+@mixin flex($direction, $jc) {
+  display: flex;
+  align-items: center;
+  justify-content: $jc;
+  flex-direction: $direction;
+}
+
+@mixin background-line($width) {
+  content: "";
+  display: block;
+  margin-top: 10px;
+  width: $width;
+  height: 8px;
+  background-color: $bg-primary;
+}
+
+@mixin heading {
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 700;
+  color: #3a316e;
+  letter-spacing: 2px;
+}
+
+@mixin mainBtn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: $text-light;
+  background: $bg-primary;
+}
