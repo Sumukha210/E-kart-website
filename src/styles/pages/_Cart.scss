@@ -49,6 +49,15 @@
         font-size: 1.5rem;
         color: gray;
 
+        i {
+          border-radius: 50%;
+          font-size: 1rem;
+          background: $text-grey;
+          padding: 0.5rem;
+          font-weight: bolder;
+          color: $text-light;
+        }
+
         &:nth-child(1) {
           margin-right: 10px;
         }

@@ -1,21 +1,40 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useState } from "react";
 import Row from "react-bootstrap/Row";
-import { ProductContext } from "../../DataContext/ProductContext";
+import { useSelector } from "react-redux";
 import CustomCard from "../Common/CustomCard";
+import Pagination from "../Common/Pagination";
 
 const AllProducts = () => {
-  const [store] = useContext(ProductContext);
+  const Products = useSelector(({ ProductReducer: { products } }) => products);
+
+  const TotalProducts = Products.slice(7);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(5);
+
+  // Get current posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const DisplayProducts = TotalProducts.slice(
+    indexOfFirstPost,
+    indexOfLastPost
+  );
+
+  console.log(DisplayProducts);
+
+  // Change page
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
     <div className="allProducts">
       <div className="allProducts__container">
         <h1 className="allProducts__title">All products:-</h1>
 
-        <Row className="align-items-center justify-content-center">
-          {store.length &&
-            store
-              .slice(7)
-              .map(({ id, img, rating, productName, brand, price }) => (
+        <Row className="align-items-center">
+          {DisplayProducts.length &&
+            DisplayProducts.map(
+              ({ id, img, rating, productName, brand, price }) => (
                 <CustomCard
                   key={id}
                   productName={productName}
@@ -25,8 +44,17 @@ const AllProducts = () => {
                   brand={brand}
                   id={id}
                 />
-              ))}
+              )
+            )}
         </Row>
+
+        <div className="my-4 d-flex justify-content-center">
+          <Pagination
+            postsPerPage={postsPerPage}
+            totalPosts={TotalProducts.length}
+            paginate={paginate}
+          />
+        </div>
       </div>
     </div>
   );

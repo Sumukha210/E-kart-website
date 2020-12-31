@@ -2,14 +2,9 @@
   position: relative;
   margin-top: 4rem;
   img {
-    height: 85vh;
-    object-fit: contain;
-    object-position: center;
+    height: 50vh;
+    object-fit: cover;
     z-index: 2;
-
-    @include breakpoint-down(sm) {
-      height: 60vh;
-    }
   }
 
   .content {
@@ -41,23 +36,25 @@
 
   .name {
     font-weight: bolder;
-    font-size: 3rem;
+    font-size: 3.5rem;
     @include breakpoint-down(sm) {
       font-size: 1.8rem;
     }
   }
 
   .price {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     font-weight: bold;
   }
 
   .buyNow {
     @include mainBtn;
+    padding: 0.8rem 3rem;
+    font-size: 1.1rem;
   }
 
   .carousel {
-    background-color: hsla(194, 21%, 88%, 0.561);
+    background-color: rgba(218, 228, 231, 0.561);
     &-control-next,
     &-control-prev {
       border-radius: 50%;

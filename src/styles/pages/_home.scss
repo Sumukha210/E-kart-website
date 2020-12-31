@@ -21,25 +21,30 @@
   //card section starts
   .card {
     cursor: pointer;
-    box-shadow: 0px 0px 5px silver;
+    box-shadow: 0px 0px 2px silver;
     margin-bottom: 1rem;
     border-radius: 5px;
     overflow: hidden;
+    transition: box-shadow 0.3s ease-in;
     &::after {
       content: "";
-      background-color: $bg-secondary;
+      background-color: $bg-danger;
       height: 6px;
       display: block;
-      width: 100%;
+      width: 0%;
       margin: auto;
-      transition: background-color 0.5s ease-in-out;
+      transition: width 0.8s ease-in-out;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 10px silver;
     }
 
     &:hover .card__btn {
       transform: translateX(0);
     }
     &:hover::after {
-      background-color: $bg-danger;
+      width: 100%;
     }
 
     img {
@@ -74,49 +79,59 @@
 
   //offer section starts
   .offerSection {
-    height: 50vh;
-    width: 100%;
-    background-size: contain !important;
+    min-height: 50vh;
 
     &__container {
       @include container;
     }
-    @include flex(column, center);
-    align-items: flex-start;
-    padding-left: 4.5rem;
-    @include breakpoint-down(sm) {
-      padding-left: 2rem;
+
+    &__Card:nth-child(1) {
+      background-color: rgba(218, 228, 231, 0.561);
+      margin-bottom: 1rem;
+    }
+
+    &__Card:nth-child(2) {
+      background-color: darken(rgba(218, 228, 231, 0.6), 10%);
+      margin-bottom: 1rem;
+    }
+
+    &__Card > div {
+      padding: 2rem 1rem 1rem 1rem;
+
+      .productName {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        text-transform: capitalize;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: bolder;
+      }
+
+      .priceDisplay {
+        font-size: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      p {
+        margin: 1rem 0;
+        font-size: 0.8rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
     }
 
     .title {
-      font-weight: bolder;
-      letter-spacing: 2px;
+      @include heading;
+
       &::after {
         @include background-line(150px);
       }
-      @include breakpoint-down(sm) {
-        font-size: 1.5rem;
-      }
     }
-    .productName {
-      margin: 1.5rem 0;
-      font-size: 1.3rem;
-      letter-spacing: 1px;
-      font-weight: bold;
-      @include breakpoint-down(sm) {
-        font-size: 1.1rem;
-      }
-    }
-    .price {
-      font-size: 1.2rem;
-      font-weight: bolder;
-      span {
-        font-size: 0.8rem;
-      }
-      @include breakpoint-down(sm) {
-        font-size: 1rem;
-      }
-    }
+
     .buyNow {
       margin-top: 1rem;
       @include mainBtn;
@@ -139,6 +154,21 @@
       }
       @include breakpoint-down(sm) {
         font-size: 1.3rem;
+      }
+    }
+  }
+
+  .page-item {
+    .page-link {
+      color: $text-dark !important;
+      outline: none !important;
+    }
+
+    &.active {
+      span {
+        background: $bg-danger !important;
+        color: $text-light !important;
+        border: none !important;
       }
     }
   }

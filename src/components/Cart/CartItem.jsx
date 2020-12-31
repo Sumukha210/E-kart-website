@@ -2,18 +2,38 @@ import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PriceDisplay from "../Common/PriceDisplay";
-import IncDecBtn from "./IncDecBtn";
+import IncBtn from "./IncBtn";
+import { useDispatch } from "react-redux";
+import {
+  decPriceFun,
+  incPriceFun,
+  removeFromCartFun,
+} from "../../Redux/Actions/ProductActions";
+import DecBtn from "./DecBtn";
 
-const CartItem = ({ id, img, price, productName, inCart, count, brand }) => {
+const CartItem = ({ id, img, price, productName, count, brand }) => {
   const [inputVal, setInputVal] = useState(Number(count));
   console.log(count);
 
-  const handleInc = () => {
+  const dispatch = useDispatch();
+
+  const handleInc = id => {
     setInputVal(inputVal + 1);
+    console.log("inc id", id);
+    dispatch(incPriceFun(id));
   };
 
-  const handleDec = () => {
-    inputVal > 0 && setInputVal(inputVal - 1);
+  const handleDec = id => {
+    if (inputVal >= 1) {
+      setInputVal(inputVal - 1);
+      dispatch(decPriceFun(id));
+    }
+
+    inputVal <= 1 && dispatch(removeFromCartFun(id));
+  };
+
+  const handleRemoveBtn = e => {
+    dispatch(removeFromCartFun(e.target.dataset.id));
   };
 
   return (
@@ -27,16 +47,17 @@ const CartItem = ({ id, img, price, productName, inCart, count, brand }) => {
               </figure>
 
               <div className="btn__group">
-                <IncDecBtn handleClick={handleDec} type="minus" />
+                <DecBtn handleClick={handleDec} id={id} />
 
                 <input
-                  min={0}
+                  min={1}
                   type="number"
                   value={inputVal}
                   onChange={e => setInputVal(e.target.value)}
+                  readOnly={true}
                 />
 
-                <IncDecBtn handleClick={handleInc} type="plus" />
+                <IncBtn handleClick={handleInc} id={id} />
               </div>
             </Col>
 
@@ -45,7 +66,12 @@ const CartItem = ({ id, img, price, productName, inCart, count, brand }) => {
                 <h6 className="productName">{productName}</h6>
                 <h6 className="brand">{brand}</h6>
                 <PriceDisplay price={price} />
-                <button className="removeBtn">Remove</button>
+                <button
+                  className="removeBtn"
+                  data-id={id}
+                  onClick={handleRemoveBtn}>
+                  Remove
+                </button>
               </div>
             </Col>
           </Row>

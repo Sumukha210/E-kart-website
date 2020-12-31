@@ -32,9 +32,7 @@
     @include flex(row, space-between);
     li {
       list-style: none;
-      &:first-child {
-        margin-right: 25px;
-      }
+      margin-right: 10px;
 
       sup {
         top: -1rem;

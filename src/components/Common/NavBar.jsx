@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import Badge from "react-bootstrap/Badge";
+import { useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { ProductContext } from "../../DataContext/ProductContext";
 
 const NavBar = () => {
-  const [store] = useContext(ProductContext);
-  const inCartLength = store.filter(({ inCart }) => inCart === true).length;
+  const Products = useSelector(({ ProductReducer: { products } }) => products);
+
+  const inCartLength = Products.filter(({ inCart }) => inCart === true).length;
 
   const history = useHistory();
 
@@ -17,6 +18,12 @@ const NavBar = () => {
         </div>
 
         <ul className="NavBar__menu">
+          <li>
+            <NavLink exact to="/">
+              <i className="fas fa-home"></i>
+            </NavLink>
+          </li>
+
           <li>
             <NavLink exact to="/cart">
               <i className="fas fa-cart-plus"></i>
