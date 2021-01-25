@@ -22,7 +22,7 @@
   .card {
     cursor: pointer;
     box-shadow: 0px 0px 2px silver;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     border-radius: 5px;
     overflow: hidden;
     transition: box-shadow 0.3s ease-in;
@@ -71,8 +71,10 @@
 
     &__name {
       margin: 1rem 0;
-      font-weight: bold;
-      font-size: 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
     }
   }
   //card section ends
@@ -86,12 +88,12 @@
     }
 
     &__Card:nth-child(1) {
-      background-color: rgba(218, 228, 231, 0.561);
       margin-bottom: 1rem;
+      box-shadow: 0 0 5px silver;
     }
 
     &__Card:nth-child(2) {
-      background-color: darken(rgba(218, 228, 231, 0.6), 10%);
+      box-shadow: 0 0 5px silver;
       margin-bottom: 1rem;
     }
 
@@ -99,7 +101,7 @@
       padding: 2rem 1rem 1rem 1rem;
 
       .productName {
-        font-size: 1.4rem;
+        font-size: 1rem;
         margin-bottom: 1rem;
         text-transform: capitalize;
         text-transform: uppercase;
@@ -119,9 +121,9 @@
     }
 
     img {
+      height: 300px;
       width: 100%;
-      max-height: 300px;
-      object-fit: cover;
+      object-fit: fill;
     }
 
     .title {

@@ -1,48 +1,45 @@
 import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const PriceDetail = () => {
-  const Products = useSelector(({ ProductReducer: { products } }) => products);
+  const cartItems = useSelector(({ CartReducer: { cart } }) => cart);
+
+  const dispatch = useDispatch();
+
+  const isAuth = useSelector(({ AuthReducer: { authData } }) => authData);
 
   const [totalPrice, setTotalPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState(0);
-  const [totalItems, setTotalItems] = useState(0);
+  const [totalNumOfItems, setTotalNumOfItems] = useState(0);
   const [finalAmount, setfinalAmount] = useState(0);
 
   useEffect(() => {
-    if (Products) {
-      const filteredItems = Products.filter(item => item.inCart == true);
-      console.log(filteredItems);
+    const {
+      caltotalNumOfItems,
+      caltotalPrice,
+      caldiscountPrice,
+      calfinalAmount,
+    } = calculate(cartItems);
 
-      const sumOfItems = filteredItems.reduce(
-        (acc, val) => Number(acc) + Number(val.total),
-        0
-      );
+    setTotalNumOfItems(caltotalNumOfItems);
+    setTotalPrice(caltotalPrice);
+    setDiscountPrice(caldiscountPrice);
+    setfinalAmount(calfinalAmount);
+  }, [cartItems]);
 
-      const discountAmount = sumOfItems / 10;
-      console.log(discountAmount);
-
-      const FinalAmount = sumOfItems - discountPrice;
-
-      setTotalItems(filteredItems.length);
-      setTotalPrice(sumOfItems);
-      setDiscountPrice(discountAmount);
-
-      FinalAmount > 0 ? setfinalAmount(FinalAmount) : setfinalAmount(0);
-    }
-  }, [Products]);
+  const handleOrderBtn = () => {};
 
   return (
     <>
       <div className="priceInfo__container">
         <Row>
           <Col>
-            <h6 className="left-title">Price({totalItems} items)</h6>
+            <h6 className="left-title">Price ({totalNumOfItems})</h6>
           </Col>
           <Col>
-            <h6 className="right-title">{totalPrice}</h6>
+            <h6 className="right-title">{totalPrice.toFixed(2)}</h6>
           </Col>
         </Row>
         <Row className="my-3">
@@ -67,7 +64,7 @@ const PriceDetail = () => {
             <h6 className="left-title">Total amount</h6>
           </Col>
           <Col>
-            <h6 className="right-title">{finalAmount} Rs/-</h6>
+            <h6 className="right-title">{finalAmount.toFixed(2)} Rs/</h6>
           </Col>
         </Row>
 
@@ -81,9 +78,18 @@ const PriceDetail = () => {
 
         <Row>
           <Col className="mt-3">
-            <button className="btn btn-primary d-block w-100">
+            <button
+              disabled={isAuth.isAllowed ? false : true}
+              className="btn btn-primary d-block w-100"
+              onClick={handleOrderBtn}>
               Place order
             </button>
+
+            {!isAuth.isAllowed && (
+              <p className="text-danger mt-2 font-weight-bold ">
+                Login to place order
+              </p>
+            )}
           </Col>
         </Row>
       </div>
@@ -92,3 +98,39 @@ const PriceDetail = () => {
 };
 
 export default PriceDetail;
+
+//discount calculation
+const calDiscount = price => {
+  let discountAmount;
+  if (price <= 100) {
+    discountAmount = 10;
+  } else if (price <= 200) {
+    discountAmount = 20;
+  } else if (price <= 500) {
+    discountAmount = 50;
+  } else if (price <= 1000) {
+    discountAmount = 100;
+  } else {
+    discountAmount = 150;
+  }
+
+  return discountAmount;
+};
+
+//finalCalculation
+const calculate = cartItems => {
+  let caltotalNumOfItems = cartItems.length;
+  let calQty = cartItems.reduce((acc, curr) => acc + curr.qty, 0);
+  let caltotalPrice =
+    cartItems.reduce((acc, curr) => acc + curr.price, 0) * calQty;
+  let caldiscountPrice = calDiscount(caltotalPrice);
+  let calfinalAmount = caltotalPrice - caldiscountPrice;
+
+  return {
+    caltotalNumOfItems,
+    calQty,
+    caltotalPrice,
+    caldiscountPrice,
+    calfinalAmount,
+  };
+};

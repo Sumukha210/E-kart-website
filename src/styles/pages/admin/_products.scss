@@ -1,0 +1,24 @@
+.products {
+  @include container;
+  margin-top: 7rem;
+
+  @include breakpoint-down(sm) {
+    button {
+      text-align: center;
+      .text {
+        display: none;
+      }
+
+      i {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__title {
+    @include heading;
+    &::after {
+      @include background-line(100px);
+    }
+  }
+}

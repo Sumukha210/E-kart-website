@@ -1,15 +1,41 @@
-export const FETCHITEMS = "FETCHITEMS";
-export const REMOVEFROMCART = "REMOVEFROMCART";
-export const ADDTOCART = "ADDTOCART";
-export const INCPRICE = "INCPRICE";
-export const DECPRICE = "DECPRICE";
+import axios from "axios";
 
-export const fetchItemsFun = payload => ({ type: FETCHITEMS, payload });
+export const GETALLPRODUCTS = "GETALLPRODUCTS";
+export const GETSPECIFICPRODUCT = "GETSPECIFICPRODUCT";
+export const SETSPECIFICPRODUCT = "SETSPECIFICPRODUCT";
+export const PRODUCT__LOADING = "PRODUCT__LOADING";
+export const PRODUCT__ERROR = "PRODUCT__ERROR";
 
-export const removeFromCartFun = payload => ({ type: REMOVEFROMCART, payload });
+export const getAllProducts__fun = payload => ({
+  type: GETALLPRODUCTS,
+  payload,
+});
 
-export const addToCartFun = payload => ({ type: ADDTOCART, payload });
+export const getSpecficProduct__fun = payload => ({
+  type: GETSPECIFICPRODUCT,
+  payload,
+});
 
-export const incPriceFun = payload => ({ type: INCPRICE, payload });
+export const setSpecificProduct__fun = payload => ({
+  type: SETSPECIFICPRODUCT,
+  payload,
+});
 
-export const decPriceFun = payload => ({ type: DECPRICE, payload });
+export const prodLoading__fun = () => ({
+  type: PRODUCT__LOADING,
+});
+
+export const prodError__fun = payload => ({
+  type: PRODUCT__ERROR,
+  payload,
+});
+
+export const getAllProducts__Api = () => async dispatch => {
+  dispatch(prodLoading__fun());
+  try {
+    const { data } = await axios.get("/getProducts");
+    dispatch(getAllProducts__fun(data));
+  } catch (error) {
+    dispatch(prodError__fun(error));
+  }
+};

@@ -60,6 +60,10 @@ $breakpoints-down: (
   font-weight: 700;
   color: #3a316e;
   letter-spacing: 2px;
+
+  @include breakpoint-down(sm) {
+    font-size: 1.1rem !important;
+  }
 }
 
 @mixin mainBtn {

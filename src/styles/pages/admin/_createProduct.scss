@@ -1,0 +1,86 @@
+.createProduct {
+  @include container;
+  margin-top: 6rem;
+
+  &__title {
+    @include heading;
+    margin-bottom: 3rem;
+
+    @include breakpoint-down(sm) {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    @include breakpoint-down(sm) {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    &::after {
+      @include background-line(100px);
+    }
+  }
+
+  label {
+    font-weight: bold !important;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+
+    &.custom-file-label {
+      color: $text-grey;
+    }
+  }
+
+  .btnGroup {
+    button {
+      width: 100%;
+      margin-right: 10px;
+      margin-bottom: 2rem;
+      border: none !important;
+      outline: none !important;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+
+      &[type="reset"] {
+        background-color: $text-grey !important;
+      }
+
+      &[type="submit"] {
+        background-color: $bg-secondary !important;
+      }
+    }
+  }
+
+  .backBtn {
+    margin-bottom: 2rem !important;
+  }
+
+  input[type="file"] {
+    margin-bottom: 1rem;
+  }
+
+  .form {
+    &-group {
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    &-file-label {
+      font-weight: bold !important;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    &-text {
+      font-weight: 600 !important;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    &-control {
+      height: 7vh;
+    }
+  }
+}

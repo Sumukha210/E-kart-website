@@ -8,10 +8,10 @@ import Pagination from "../Common/Pagination";
 const AllProducts = () => {
   const Products = useSelector(({ ProductReducer: { products } }) => products);
 
-  const TotalProducts = Products.slice(7);
+  const TotalProducts = Products.slice(8);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(5);
+  const [postsPerPage] = useState(8);
 
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
@@ -20,8 +20,6 @@ const AllProducts = () => {
     indexOfFirstPost,
     indexOfLastPost
   );
-
-  console.log(DisplayProducts);
 
   // Change page
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -33,19 +31,16 @@ const AllProducts = () => {
 
         <Row className="align-items-center">
           {DisplayProducts.length &&
-            DisplayProducts.map(
-              ({ id, img, rating, productName, brand, price }) => (
-                <CustomCard
-                  key={id}
-                  productName={productName}
-                  img={img}
-                  price={price}
-                  rating={rating}
-                  brand={brand}
-                  id={id}
-                />
-              )
-            )}
+            DisplayProducts.map(({ id, image, ratings, title, price }) => (
+              <CustomCard
+                key={id}
+                productName={title}
+                img={image}
+                price={price}
+                rating={ratings}
+                id={id}
+              />
+            ))}
         </Row>
 
         <div className="my-4 d-flex justify-content-center">

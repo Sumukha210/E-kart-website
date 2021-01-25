@@ -1,0 +1,65 @@
+.ratingForm {
+  @include container;
+  margin-top: 8rem;
+
+  .row {
+    min-height: 60vh;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  svg {
+    @include breakpoint-down(xs) {
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+
+  .heading {
+    @include heading;
+    margin-bottom: 2rem;
+    &::after {
+      @include background-line(100px);
+    }
+    @include breakpoint-down(xs) {
+      font-size: 1rem !important;
+      line-height: 2;
+    }
+  }
+
+  button {
+    background-color: $bg-secondary !important;
+    border: none !important;
+    padding: 0.8rem initial;
+    font-weight: bold;
+  }
+
+  .dropdown {
+    &-toggle {
+      width: 100% !important;
+      text-align: left !important;
+      font-weight: bold !important;
+      background-color: $text-grey !important;
+      outline: none !important;
+      border: none !important;
+      padding: 0.6rem 1rem;
+    }
+
+    &-menu {
+      width: 100% !important;
+    }
+
+    &-item {
+      cursor: pointer;
+      &:hover {
+        background: $text-grey !important;
+      }
+
+      &.true {
+        background: $text-grey !important;
+      }
+    }
+  }
+}

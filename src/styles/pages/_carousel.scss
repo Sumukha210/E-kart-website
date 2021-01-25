@@ -2,21 +2,27 @@
   position: relative;
   margin-top: 4rem;
   img {
-    height: 50vh;
-    object-fit: cover;
+    height: 90vh;
+    object-fit: contain;
     z-index: 2;
+    @include breakpoint-down(md) {
+      margin-top: 2rem;
+      height: 60vh;
+    }
   }
 
   .content {
-    @include breakpoint-down(sm) {
+    @include breakpoint-down(md) {
+      padding-top: 3rem;
+    }
+
+    @include breakpoint-down(md) {
       text-align: center;
       padding-top: 2rem;
 
-      .brand {
-        font-size: 0.8rem;
-      }
       .name {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
       }
       .price {
         font-size: 1rem;
@@ -24,22 +30,15 @@
       .buyNow {
         padding: 0.4rem 1.2rem;
         font-size: 0.9rem;
+        @include mainBtn;
       }
     }
   }
 
-  .brand {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: $text-grey;
-  }
-
   .name {
     font-weight: bolder;
-    font-size: 3.5rem;
-    @include breakpoint-down(sm) {
-      font-size: 1.8rem;
-    }
+    font-size: 1.6rem;
+    line-height: 2.5rem;
   }
 
   .price {
@@ -54,7 +53,6 @@
   }
 
   .carousel {
-    background-color: rgba(218, 228, 231, 0.561);
     &-control-next,
     &-control-prev {
       border-radius: 50%;

@@ -15,17 +15,13 @@ const BrandNewProducts = () => {
 
         <Row className="align-items-start justify-content-around">
           {Products &&
-            Products.slice(
-              3,
-              6
-            ).map(({ id, productName, img, price, rating, brand }) => (
+            Products.slice(3, 6).map(({ id, title, image, price, ratings }) => (
               <CustomCard
                 key={id}
-                productName={productName}
-                img={img}
+                productName={title}
+                img={image}
                 price={price}
-                rating={rating}
-                brand={brand}
+                rating={ratings}
                 id={id}
               />
             ))}

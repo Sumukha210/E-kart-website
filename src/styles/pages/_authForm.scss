@@ -1,0 +1,76 @@
+.authForm {
+  margin-top: 6rem;
+
+  .container {
+    box-shadow: 0px 0px 10px silver;
+    padding: 2rem 1.5rem;
+  }
+
+  label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .form-control {
+    outline: none !important;
+    height: 7vh;
+
+    &::placeholder {
+      color: $text-grey !important;
+    }
+
+    &:focus {
+      outline-color: $bg-secondary !important;
+    }
+  }
+
+  .error {
+    font-size: 0.7rem;
+    padding-left: 5px;
+    letter-spacing: 2px;
+    color: $bg-danger;
+    font-weight: bolder;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  button[type="submit"] {
+    background-color: $bg-secondary;
+    color: $text-light;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+  }
+
+  .extra {
+    margin-top: 2rem;
+    &__message {
+      font-size: 1rem;
+      span {
+        font-size: 1.1rem;
+        margin-left: 10px;
+        color: $bg-secondary;
+        font-weight: bold;
+        letter-spacing: 1px;
+        cursor: pointer;
+      }
+
+      @include breakpoint-down(sm) {
+        font-size: 0.9rem;
+        line-height: 1.8rem;
+        span {
+          font-size: 1rem;
+        }
+      }
+      @include breakpoint-down(xs) {
+        span {
+          margin-left: -1px;
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+}

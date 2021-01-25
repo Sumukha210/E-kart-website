@@ -1,0 +1,180 @@
+.specificPage {
+  margin-top: 6rem;
+
+  .row {
+    min-height: 70vh;
+  }
+
+  p {
+    @include breakpoint-down(sm) {
+      line-height: 1.7rem;
+    }
+  }
+
+  &__container {
+    @include container;
+  }
+
+  img {
+    height: 400px;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .Card {
+    &__title {
+      @include heading;
+      letter-spacing: 0px;
+    }
+
+    &__brand {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: $text-grey;
+    }
+
+    .priceDisplay {
+      margin: 1.5rem 0;
+    }
+  }
+
+  .btn__group {
+    margin-top: 2rem;
+
+    button {
+      padding: 0.8rem 2.2rem;
+      border: none;
+      outline: none;
+      color: $text-light;
+      text-transform: capitalize;
+      font-weight: bolder;
+      letter-spacing: 2px;
+      transition: background 0.3s ease-in;
+
+      button.add,
+      button.remove {
+        font-size: 0.8rem;
+        padding: 1rem 2rem;
+      }
+
+      &:nth-child(1) {
+        background: $text-grey;
+        &:hover {
+          background: lighten($text-grey, 10%);
+        }
+      }
+
+      &:nth-child(2).add {
+        background: $bg-secondary;
+        &:hover {
+          background: lighten($bg-secondary, 5%);
+        }
+      }
+
+      &:nth-child(2).remove {
+        background: $bg-danger;
+        &:hover {
+          background: lighten($bg-danger, 5%);
+        }
+      }
+
+      @include breakpoint-down(md) {
+        font-size: 0.8rem;
+        padding: 0.6rem 1.5rem;
+      }
+    }
+    @include breakpoint-down(sm) {
+      @include flex(column, center);
+      button {
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 1rem;
+        padding: 0.8rem 1.3rem;
+        &.remove,
+        &.add {
+          margin-left: -6px;
+        }
+      }
+    }
+  }
+
+  // ratings style starts
+
+  .ratings {
+    margin-top: 3rem;
+
+    &__container {
+      @include container;
+    }
+
+    .rateProductBtn {
+      box-shadow: 0px 0px 5px silver;
+      background-color: $text-grey !important;
+      outline: none !important;
+      border: none !important;
+      padding: 0.6rem 1.2rem;
+
+      @include breakpoint-down(xs) {
+        padding: 0.7rem;
+        font-size: 1rem;
+      }
+    }
+
+    &__mainTitle {
+      @include heading;
+      font-size: 1.8rem;
+
+      @include breakpoint-down(xs) {
+        font-size: 1rem !important;
+      }
+
+      &::after {
+        @include background-line(60px);
+      }
+    }
+
+    .card {
+      box-shadow: 0px 0px 5px silver !important;
+
+      &-header {
+        .right {
+          margin-top: 1rem;
+        }
+        @include breakpoint-up(xs) {
+          @include flex(row, space-between);
+        }
+      }
+
+      .left {
+        div:nth-child(1) {
+          background-color: $text-grey;
+          height: 50px !important;
+          width: 50px !important;
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: $text-light;
+          padding-top: 5px;
+          text-align: center;
+        }
+
+        div:nth-child(2) {
+          font-weight: bold !important;
+
+          .ratingDisplay {
+            width: 20px;
+          }
+        }
+      }
+
+      .rating__display {
+        span:last-child {
+          font-size: 0.9rem;
+        }
+        .ratingDisplay {
+          width: 52px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
