@@ -25,17 +25,22 @@ export const order_error_fun = payload => ({ type: ORDER__ERROR, payload });
 //get order of specific user
 export const getOrderDetail__Api = () => async dispatch => {
   try {
-    const { data } = await axios.get(`/orderDetails`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_URL}/orderDetails`
+    );
     dispatch(getOrderDetail__fun(data));
   } catch (error) {
-    error;
+    console.log(error);
   }
 };
 
 export const createOrder__Api = orderData => async dispatch => {
   dispatch(order_loading_fun());
   try {
-    const { data } = await axios.post(`/createOrder`, orderData);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_URL}/createOrder`,
+      orderData
+    );
     dispatch(createOrders__fun(data));
   } catch (error) {
     dispatch(order_error_fun(error));
@@ -46,9 +51,11 @@ export const createOrder__Api = orderData => async dispatch => {
 export const updateOrderStatus__Api = (id, status) => async dispatch => {
   dispatch(order_loading_fun());
   try {
-    const { data } = await axios.patch(`/updateStatus/${id}`, status);
+    const { data } = await axios.patch(
+      `${process.env.REACT_APP_URL}/updateStatus/${id}`,
+      status
+    );
     dispatch(updateOrderStatus_fun(id, data));
-    "order status", data;
   } catch (error) {
     dispatch(order_error_fun(error));
   }
@@ -58,9 +65,10 @@ export const updateOrderStatus__Api = (id, status) => async dispatch => {
 export const getAllOrderDetails__Api = () => async dispatch => {
   dispatch(order_loading_fun());
   try {
-    const { data } = await axios.get("/getAllOrderDetails");
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_URL}/getAllOrderDetails`
+    );
     dispatch(getOrderDetail__fun(data));
-    "order data", data;
   } catch (error) {
     dispatch(order_error_fun(error));
   }

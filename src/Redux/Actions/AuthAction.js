@@ -17,7 +17,10 @@ export const login__Api = userData => async dispatch => {
   dispatch(loading__Fun());
 
   try {
-    const { data } = await axios.post(`/login`, userData);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_URL}/login`,
+      userData
+    );
 
     dispatch(authData__Fun(data));
     sessionStorage.setItem("user", JSON.stringify(data));
@@ -29,7 +32,10 @@ export const login__Api = userData => async dispatch => {
 export const signup__Api = userData => async dispatch => {
   dispatch(loading__Fun());
   try {
-    const { data } = await axios.post(`/signup`, userData);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_URL}/signup`,
+      userData
+    );
 
     dispatch(authData__Fun(data));
     sessionStorage.setItem("user", JSON.stringify(data));
@@ -42,7 +48,10 @@ export const updateAccount__Api = userData => async dispatch => {
   dispatch(loading__Fun());
 
   try {
-    const { data } = await axios.patch("/updateAccount", userData);
+    const { data } = await axios.patch(
+      `${process.env.REACT_APP_URL}/updateAccount`,
+      userData
+    );
     dispatch(authData__Fun(data));
     sessionStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
@@ -51,7 +60,7 @@ export const updateAccount__Api = userData => async dispatch => {
 };
 
 export const logout__Api = () => async dispatch => {
-  const data = await axios.get("/logout");
+  const data = await axios.get(`${process.env.REACT_APP_URL}/logout`);
   dispatch(logout__Fun());
   localStorage.removeItem("orderDetails");
   sessionStorage.removeItem("ratings");

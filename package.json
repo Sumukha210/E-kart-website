@@ -47,6 +47,5 @@
   },
   "devDependencies": {
     "node-sass": "^4.14.1"
-  },
-  "proxy": "http://localhost:5000/ekart"
+  }
 }

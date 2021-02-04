@@ -9,7 +9,6 @@ const SingleProduct = ({ productId, qty, customerId, price, status, id }) => {
   const dispatch = useDispatch();
 
   const handleOrderBtn = () => {
-    id;
     dispatch(updateOrderStatus__Api(id, { status: "delivered" }));
   };
 

@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<p align="center">
+
+  <h1 align="center">E-kart</h1>
+
+  <h3 align="center">
+   A Fullstack E-commerce website(mern stack)
+  </h3>
+ <br />
+ 
+ ### Click here for live demo   <a href="https://e-kart.netlify.app/">E-Kart</a>
+
+</p>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project:-
+
+![Home page](https://raw.githubusercontent.com/Sumukha210/countries/master/public/home-page.png "Ekart home page")
+
+E-kart is a mern stack e-commerce website.
+
+#### The common funtionalities are:-
+
+- The user can see all the products and their ratings
+- The user can see the detailed description of the product
+- The user can add the products to cart(It stays in localstorage)
+- The user must login/signup to place order
+- The user can rate product only if he is authenticated and also he should buy products in order to give ratings
+- The user can give only one ratings for each product
+- The user can see Delivery status of the ordered products,if the product is delivered then the status will be "Delivered" otherwise "Not Delivered"
+- The admin mark the delivery status
+
+I'm using [fakestore Api](https://fakestoreapi.com/) to get product lists.
+
+##### Credit:- fakestore Api
+
+### Built With
+
+- #### React
+- #### React Bootstrap
+- #### Redux
+- #### Redux-thunk
+- #### Node js
+- #### Express js
+- #### MongoDb
+
+### Key concepts:-
+
+- #### React hooks
+- #### MVC Pattern on Backend
+- #### Product Ratings
+- #### Cors
+- #### Redux hooks
+- #### MongoDB Atlas
+- #### Axios
+
+<!-- GETTING STARTED -->
+
+# Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+### To run project:-
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### To build project:-
 
 ### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

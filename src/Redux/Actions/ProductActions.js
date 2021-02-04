@@ -33,7 +33,9 @@ export const prodError__fun = payload => ({
 export const getAllProducts__Api = () => async dispatch => {
   dispatch(prodLoading__fun());
   try {
-    const { data } = await axios.get("/getProducts");
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_URL}/getProducts`
+    );
     dispatch(getAllProducts__fun(data));
   } catch (error) {
     dispatch(prodError__fun(error.response.data));

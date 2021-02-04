@@ -25,7 +25,6 @@ const RatingContainer = ({ productId }) => {
   };
 
   useEffect(() => {
-    "result", result;
     if (result && result.length) {
       dispatch(getSpecificRatings__Api(productId));
     }

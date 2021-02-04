@@ -24,29 +24,34 @@ export const createRating__fun = payload => ({ type: CREATE_RATINGS, payload });
 
 export const getAllRatings__Api = () => async dispatch => {
   try {
-    const { data } = await axios.get(`/getAllRatings`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_URL}/getAllRatings`
+    );
     dispatch(getAllRatings__fun(data));
   } catch (error) {
-    "ratings error", error;
+    console.log("ratings error", error);
   }
 };
 
 export const createRatings__Api = ratingsData => async dispatch => {
   try {
-    const { data } = await axios.post(`/ratings`, ratingsData);
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_URL}/ratings`,
+      ratingsData
+    );
     dispatch(createRating__fun(data));
-    "ratings data", data;
   } catch (error) {
-    error;
+    console.log(error);
   }
 };
 
 export const getSpecificRatings__Api = productId => async dispatch => {
   try {
-    const { data } = await axios.get(`/getSpecificRatings/${productId}`);
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_URL}/getSpecificRatings/${productId}`
+    );
     dispatch(getSpecificRating__fun(data));
-    "getspcificProduct", data;
   } catch (error) {
-    error;
+    console.log(error);
   }
 };
