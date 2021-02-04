@@ -16,7 +16,7 @@
 
 ## About The Project:-
 
-![Home page](https://raw.githubusercontent.com/Sumukha210/countries/master/public/home-page.png "Ekart home page")
+![Home page](https://github.com/Sumukha210/E-kart-website/blob/main/public/img/homepage.png?raw=true "Ekart home page")
 
 E-kart is a mern stack e-commerce website.
 
