@@ -19,7 +19,6 @@ export const CartReducer = (state = initialState, { type, payload }) => {
       };
 
     case ADDTOCART:
-      console.log(state.cart);
       return {
         ...state,
         cart: [...state.cart, payload],

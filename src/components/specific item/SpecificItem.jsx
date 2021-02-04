@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import Col from "react-bootstrap/Col";
@@ -14,12 +14,17 @@ import {
   removeFromCart__fun,
 } from "../../Redux/Actions/CartAction";
 import RatingContainer from "./RatingContainer";
+import { useRatingsStorage } from "../customhooks/useRatingsSessionStorage";
 
 const SpecificItem = () => {
   const { id } = useParams();
   const [isInCart, setIsInCart] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const ref = useRef();
+  const { findSumOfRatings } = useRatingsStorage();
+
+  let result = findSumOfRatings(id);
 
   const product = useSelector(({ ProductReducer: { specificProduct } }) => {
     return specificProduct;
@@ -41,7 +46,7 @@ const SpecificItem = () => {
   const handleBackBtn = () => history.push("/");
 
   useEffect(() => {
-    const getSessionData = sessionStorage.getItem("productDetail");
+    let getSessionData = sessionStorage.getItem("productDetail");
 
     if (getSessionData && JSON.parse(getSessionData).image) {
       dispatch(setSpecificProduct__fun(JSON.parse(getSessionData)));
@@ -60,8 +65,12 @@ const SpecificItem = () => {
     sessionStorage.setItem("productDetail", JSON.stringify(product));
   }, [product]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="specificPage">
+    <div className="specificPage" ref={ref}>
       <div className="specificPage__container">
         <Row className="align-items-center justify-content-center">
           {product && (
@@ -75,7 +84,13 @@ const SpecificItem = () => {
                     {product.title}
                   </h6>
 
-                  <RatingDisplay rating={product.ratings} />
+                  {result ? (
+                    <RatingDisplay rating={result} />
+                  ) : (
+                    <h6 className="my-3 font-weight-bold text-secondary">
+                      No ratings
+                    </h6>
+                  )}
 
                   <PriceDisplay price={product.price} />
                   <p>{product.description}</p>

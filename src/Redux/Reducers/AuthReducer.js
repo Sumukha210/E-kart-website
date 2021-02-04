@@ -3,6 +3,7 @@ import {
   AUTH__ERROR,
   AUTH__LOADING,
   LOGOUT,
+  SET_AUTH__ERROR,
 } from "../Actions/AuthAction";
 
 const initialState = {
@@ -17,6 +18,7 @@ export const AuthReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         authData: { ...payload },
+        loading: false,
       };
 
     case AUTH__LOADING:
@@ -32,8 +34,15 @@ export const AuthReducer = (state = initialState, { type, payload }) => {
         error: { ...payload },
       };
 
+    case SET_AUTH__ERROR:
+      return {
+        ...state,
+        error: {},
+      };
+
     case LOGOUT:
       sessionStorage.removeItem("user");
+      localStorage.removeItem("orderDetails");
       return {
         authData: {},
         loading: false,

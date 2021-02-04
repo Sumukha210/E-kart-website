@@ -10,12 +10,10 @@ import {
 const FormInputGroup = ({ name, placeholder, register, errors, ...props }) => {
   const authError = useSelector(({ AuthReducer: { error } }) => error);
 
-  console.log(authError);
-
   const propType = () => {
     if (name === "name") {
       return nameProps;
-    } else if (name === "password") {
+    } else if (name === "password" || name === "confirm password") {
       return passwordProps;
     } else {
       return emailProps;

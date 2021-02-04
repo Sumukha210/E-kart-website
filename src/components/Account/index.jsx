@@ -10,15 +10,21 @@ const AdminPage = () => {
 
   return (
     <div className="account">
-      {/* {isAuth.role !== "admin" && <AccountForm />} */}
-
-      <Row className="justify-content-between align-items-center ">
-        <Col lg={3} sm={12}>
-          {/* <AccountForm /> */}
-        </Col>
-        <Col lg={9} sm={12}>
-          <Products />
-        </Col>
+      <Row className="justify-content-between mx-auto">
+        {isAuth.role === "admin" ? (
+          <Col lg={12}>
+            <Products />
+          </Col>
+        ) : (
+          <>
+            <Col lg={3} sm={12}>
+              <AccountForm />
+            </Col>
+            <Col lg={9} sm={12}>
+              <Products />
+            </Col>
+          </>
+        )}
       </Row>
     </div>
   );

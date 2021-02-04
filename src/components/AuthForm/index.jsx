@@ -6,28 +6,26 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import FormGroup from "react-bootstrap/FormGroup";
-import Spinner from "react-bootstrap/Spinner";
 import CustomFormGroup from "../Common/CustomFormGroup";
 import {
   login__Api,
   logout__Fun,
+  setAuthError__Fun,
   signup__Api,
 } from "../../Redux/Actions/AuthAction";
 import ButtonLoading from "../Common/ButtonLoading";
 
 const AuthForm = () => {
   const [isSignUp, setIsSignUp] = useState(false);
+  const { register, handleSubmit, errors, reset } = useForm();
 
   const authError = useSelector(({ AuthReducer: { error } }) => error);
-
   const isAuth = useSelector(({ AuthReducer: { authData } }) => authData);
-
   const authLoading = useSelector(({ AuthReducer: { loading } }) => loading);
 
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = (data, e) => {
     if (isSignUp) {
       dispatch(signup__Api(data));
@@ -38,6 +36,7 @@ const AuthForm = () => {
 
   const handleSwitchMode = () => {
     setIsSignUp(prev => !prev);
+    authError && dispatch(setAuthError__Fun());
   };
 
   useEffect(() => {
@@ -79,10 +78,10 @@ const AuthForm = () => {
 
                 <FormGroup className="my-3">
                   <CustomFormGroup
-                    type="text"
+                    type="password"
                     name="password"
                     register={register}
-                    placeholder="myname123@"
+                    placeholder="kingandqueen1@"
                     errors={errors}
                   />
                 </FormGroup>

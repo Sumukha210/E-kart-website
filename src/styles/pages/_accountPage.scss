@@ -1,0 +1,71 @@
+.account {
+  width: 95%;
+  margin: auto;
+  margin-top: 7rem;
+
+  //product style starts(table)
+  .products {
+    @include breakpoint-down(sm) {
+      button {
+        text-align: center;
+        .text {
+          display: none;
+        }
+
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &__title {
+      @include heading;
+      font-size: 1.1rem !important;
+
+      &::after {
+        @include background-line(100px);
+      }
+    }
+  }
+  //product style ends(table)
+
+  .accountForm {
+    position: relative;
+
+    .form {
+      &-control {
+        &::placeholder {
+          color: $text-grey;
+        }
+      }
+
+      label {
+        font-size: 0.95rem;
+        font-weight: bold;
+        text-transform: capitalize;
+      }
+
+      .error {
+        margin-top: 6px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: red;
+      }
+    }
+
+    &__title {
+      @include heading;
+      font-size: 1.1rem !important;
+
+      &::after {
+        @include background-line(60px);
+      }
+    }
+
+    button[type="submit"] {
+      background-color: $bg-secondary !important;
+      font-weight: bold;
+      border-color: $bg-secondary !important;
+    }
+  }
+}

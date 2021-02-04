@@ -43,6 +43,10 @@
     text-transform: capitalize;
     letter-spacing: 2px;
     font-size: 1.1rem;
+
+    &:focus {
+      background-color: $bg-secondary !important;
+    }
   }
 
   .extra {

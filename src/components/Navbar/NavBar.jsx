@@ -25,8 +25,6 @@ const NavBar = () => {
     }
   }, []);
 
-  console.log("cart ", CartItems);
-
   const history = useHistory();
 
   return (

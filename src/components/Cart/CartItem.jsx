@@ -70,7 +70,7 @@ const CartItem = ({ id, image, price, title }) => {
             <Col lg={6} className="offset-lg-2">
               <div className="cartItem__content text-uppercase">
                 <h6 className="text-capitalize font-weight-bold productName">
-                  {title && title.slice(0, 150)}....
+                  {title && title.slice(0, 250)}....
                 </h6>
                 <PriceDisplay price={price} />
                 <button

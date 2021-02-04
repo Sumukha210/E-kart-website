@@ -34,6 +34,11 @@ body {
   }
 }
 
+.product-error {
+  @include flex(row, center);
+  height: 80vh;
+}
+
 .ratingDisplay {
   background-color: $bg-secondary;
   width: 53px;
@@ -47,4 +52,9 @@ body {
   span:nth-child(1) {
     font-weight: bolder;
   }
+}
+
+.form-control {
+  box-shadow: none !important;
+  outline: none !important;
 }

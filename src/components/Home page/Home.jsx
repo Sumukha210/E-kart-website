@@ -20,7 +20,8 @@ const Home = () => {
   );
 
   const loading = useSelector(({ ProductReducer: { loading } }) => loading);
-  console.log("loading", loading);
+
+  const error = useSelector(({ ProductReducer: { error } }) => error);
 
   useEffect(() => {
     const getLocalStoragee = localStorage.getItem("allProducts");
@@ -48,6 +49,12 @@ const Home = () => {
           </>
         )}
         {loading && <Spinner />}
+
+        {error.payload && (
+          <h6 className="text-danger text-center font-weight-bold product-error">
+            {JSON.stringify(error)}
+          </h6>
+        )}
       </div>
     </>
   );

@@ -28,13 +28,6 @@ const App = () => {
 
   const dispatch = useDispatch();
 
-  const AdminRoute = ({ children, ...props }) => (
-    <Route
-      {...props}
-      render={() => (isAuth.role === "admin" ? children : <Redirect to="/" />)}
-    />
-  );
-
   const AuthRoute = ({ children, ...props }) => (
     <Route
       {...props}
@@ -70,6 +63,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/specificItem/:id" component={SpecificItem} />
+
           <Route exact path="/authForm" component={AuthForm} />
 
           <AuthRoute path="/ratingForm/:id">

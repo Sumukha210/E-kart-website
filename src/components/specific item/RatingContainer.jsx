@@ -1,13 +1,20 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Ratings from "../Ratings/Ratings";
+import { getSpecificRatings__Api } from "../../Redux/Actions/RatingAction";
+import { useRatingsStorage } from "../customhooks/useRatingsSessionStorage";
 
 const RatingContainer = ({ productId }) => {
   const history = useHistory();
-
+  const { findRatings } = useRatingsStorage();
   const isAuth = useSelector(({ AuthReducer: { authData } }) => authData);
+  const ratings__info = useSelector(
+    ({ RatingsReducer: { specificRating } }) => specificRating
+  );
+  let dispatch = useDispatch();
+  let result = findRatings(productId);
 
   const handleRateProduct = () => {
     if (isAuth) {
@@ -16,6 +23,13 @@ const RatingContainer = ({ productId }) => {
       history.push("/authForm");
     }
   };
+
+  useEffect(() => {
+    "result", result;
+    if (result && result.length) {
+      dispatch(getSpecificRatings__Api(productId));
+    }
+  }, [productId]);
 
   return (
     <div className="ratings">
@@ -30,25 +44,21 @@ const RatingContainer = ({ productId }) => {
           </Button>
         </div>
 
-        <Ratings
-          userName="sumukha"
-          ratings="3.1"
-          comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, vero."
-          createdAt="2021-01-14 14:32:05.714Z"
-        />
-
-        <Ratings
-          userName="sumukha"
-          ratings="4.5"
-          comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, vero."
-          createdAt="2021-01-14 14:32:05.714Z"
-        />
-        <Ratings
-          userName="sumukha"
-          ratings="4"
-          comments="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, reiciendis. Accusantium eligendi voluptatem nemo id, beatae nihil porro deleniti saepe at temporibus ut repellat, rerum laboriosam soluta velit deserunt necessitatibus. Blanditiis quaerat sapiente eligendi, maiores culpa natus enim, quae, voluptas optio tempora suscipit. Exercitationem maxime ea molestias magni hic eum."
-          createdAt="2021-01-14 14:32:05.714Z"
-        />
+        {ratings__info.length ? (
+          ratings__info.map(
+            ({ name, createdAt, description, ratings, _id }) => (
+              <Ratings
+                key={_id}
+                userName={name}
+                ratings={ratings}
+                comments={description}
+                createdAt={createdAt}
+              />
+            )
+          )
+        ) : (
+          <h5 className="font-weight-bold text-secondary">No ratings...</h5>
+        )}
       </div>
     </div>
   );

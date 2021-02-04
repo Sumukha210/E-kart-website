@@ -37,7 +37,6 @@ const AllProducts = () => {
                 productName={title}
                 img={image}
                 price={price}
-                rating={ratings}
                 id={id}
               />
             ))}

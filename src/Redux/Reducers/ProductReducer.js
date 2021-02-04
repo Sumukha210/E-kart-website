@@ -10,7 +10,7 @@ const initialState = {
   products: [],
   specificProduct: {},
   loading: false,
-  error: [],
+  error: {},
 };
 
 export const ProductReducer = (state = initialState, { type, payload }) => {
@@ -20,7 +20,7 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
         ...state,
         products: [...payload],
         loading: false,
-        error: [],
+        error: {},
       };
 
     case GETSPECIFICPRODUCT:
@@ -46,7 +46,7 @@ export const ProductReducer = (state = initialState, { type, payload }) => {
         products: [],
         specificProduct: {},
         loading: false,
-        error: [payload],
+        error: { payload },
       };
 
     default:

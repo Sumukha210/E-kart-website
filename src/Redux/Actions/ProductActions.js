@@ -36,6 +36,6 @@ export const getAllProducts__Api = () => async dispatch => {
     const { data } = await axios.get("/getProducts");
     dispatch(getAllProducts__fun(data));
   } catch (error) {
-    dispatch(prodError__fun(error));
+    dispatch(prodError__fun(error.response.data));
   }
 };

@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { createOrder__Api } from "../../Redux/Actions/OrderAction";
+import { clearCart__fun } from "../../Redux/Actions/CartAction";
 
 const PriceDetail = () => {
   const cartItems = useSelector(({ CartReducer: { cart } }) => cart);
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const orderError = useSelector(({ OrderReducer: { error } }) => error);
   const isAuth = useSelector(({ AuthReducer: { authData } }) => authData);
 
   const [totalPrice, setTotalPrice] = useState(0);
@@ -29,7 +33,21 @@ const PriceDetail = () => {
     setfinalAmount(calfinalAmount);
   }, [cartItems]);
 
-  const handleOrderBtn = () => {};
+  const handleOrderBtn = () => {
+    const { calQty, calfinalAmount } = calculate(cartItems);
+    dispatch(
+      createOrder__Api({
+        qty: calQty,
+        productId: cartItems.map(item => item.id).join(","),
+        totalPrice: calfinalAmount,
+      })
+    );
+
+    if (!orderError.length) {
+      history.push("/account");
+      dispatch(clearCart__fun());
+    }
+  };
 
   return (
     <>

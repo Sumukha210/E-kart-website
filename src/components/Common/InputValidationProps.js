@@ -17,8 +17,9 @@ export const emailProps = {
 
 export const passwordProps = {
   required: "this is required",
-  minLength: {
-    value: 6,
-    message: "Min length is 6",
+  pattern: {
+    value: /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,20}$/,
+    message:
+      "7 to 20 characters which contain at least one numeric digit and a special character",
   },
 };
