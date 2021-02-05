@@ -48,6 +48,7 @@ I'm using [fakestore Api](https://fakestoreapi.com/) to get product lists.
 ### Key concepts:-
 
 - #### React hooks
+- #### Auth with JWT
 - #### MVC Pattern on Backend
 - #### Product Ratings
 - #### Cors
