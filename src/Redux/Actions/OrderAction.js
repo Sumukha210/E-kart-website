@@ -1,4 +1,4 @@
-import axios from "axios";
+import { API } from "../../axiosConfig";
 
 export const GET_ORDER_DETAIL = "GET_ORDER_DETAIL";
 export const CREATE_ORDERS = "CREATE_ORDERS";
@@ -25,10 +25,9 @@ export const order_error_fun = payload => ({ type: ORDER__ERROR, payload });
 //get order of specific user
 export const getOrderDetail__Api = () => async dispatch => {
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/orderDetails`
-    );
+    const { data } = await API.get(`/orderDetails`);
     dispatch(getOrderDetail__fun(data));
+    console.log("order data", data);
   } catch (error) {
     console.log(error);
   }
@@ -36,12 +35,12 @@ export const getOrderDetail__Api = () => async dispatch => {
 
 export const createOrder__Api = orderData => async dispatch => {
   dispatch(order_loading_fun());
+  console.log("orderdata", orderData);
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_URL}/createOrder`,
-      orderData
-    );
+    const { data } = await API.post(`/createOrder`, orderData);
+
     dispatch(createOrders__fun(data));
+    console.log("create order data", data);
   } catch (error) {
     dispatch(order_error_fun(error));
   }
@@ -51,10 +50,8 @@ export const createOrder__Api = orderData => async dispatch => {
 export const updateOrderStatus__Api = (id, status) => async dispatch => {
   dispatch(order_loading_fun());
   try {
-    const { data } = await axios.patch(
-      `${process.env.REACT_APP_URL}/updateStatus/${id}`,
-      status
-    );
+    const { data } = await API.patch(`/updateStatus/${id}`, status);
+
     dispatch(updateOrderStatus_fun(id, data));
   } catch (error) {
     dispatch(order_error_fun(error));
@@ -64,12 +61,13 @@ export const updateOrderStatus__Api = (id, status) => async dispatch => {
 //admin=get all order details
 export const getAllOrderDetails__Api = () => async dispatch => {
   dispatch(order_loading_fun());
+  console.log(`${process.env.REACT_APP_URL}/getAllOrderDetails`);
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/getAllOrderDetails`
-    );
+    const { data } = await API.get(`/getAllOrderDetails/`);
     dispatch(getOrderDetail__fun(data));
+    console.log("order data is", data);
   } catch (error) {
     dispatch(order_error_fun(error));
+    console.log("order error", error);
   }
 };

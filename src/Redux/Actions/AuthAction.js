@@ -1,4 +1,4 @@
-import axios from "axios";
+import { API } from "../../axiosConfig";
 
 export const AUTH__DATA = "AUTH__DATA";
 export const AUTH__LOADING = "AUTH__LOADING";
@@ -17,10 +17,7 @@ export const login__Api = userData => async dispatch => {
   dispatch(loading__Fun());
 
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_URL}/login`,
-      userData
-    );
+    const { data } = await API.post(`/login`, userData);
 
     dispatch(authData__Fun(data));
     sessionStorage.setItem("user", JSON.stringify(data));
@@ -32,10 +29,7 @@ export const login__Api = userData => async dispatch => {
 export const signup__Api = userData => async dispatch => {
   dispatch(loading__Fun());
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_URL}/signup`,
-      userData
-    );
+    const { data } = await API.post(`/signup`, userData);
 
     dispatch(authData__Fun(data));
     sessionStorage.setItem("user", JSON.stringify(data));
@@ -48,10 +42,8 @@ export const updateAccount__Api = userData => async dispatch => {
   dispatch(loading__Fun());
 
   try {
-    const { data } = await axios.patch(
-      `${process.env.REACT_APP_URL}/updateAccount`,
-      userData
-    );
+    const { data } = await API.patch(`/updateAccount`, userData);
+
     dispatch(authData__Fun(data));
     sessionStorage.setItem("user", JSON.stringify(data));
   } catch (error) {
@@ -60,8 +52,9 @@ export const updateAccount__Api = userData => async dispatch => {
 };
 
 export const logout__Api = () => async dispatch => {
-  const data = await axios.get(`${process.env.REACT_APP_URL}/logout`);
+  await API.get(`/logout`);
   dispatch(logout__Fun());
   localStorage.removeItem("orderDetails");
   sessionStorage.removeItem("ratings");
+  localStorage.removeItem("profile");
 };

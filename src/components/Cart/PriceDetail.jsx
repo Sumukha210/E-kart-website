@@ -43,6 +43,12 @@ const PriceDetail = () => {
       })
     );
 
+    console.log({
+      qty: calQty,
+      productId: cartItems.map(item => item.id).join(","),
+      totalPrice: calfinalAmount,
+    });
+
     if (!orderError.length) {
       history.push("/account");
       dispatch(clearCart__fun());

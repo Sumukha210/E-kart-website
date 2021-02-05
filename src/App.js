@@ -12,6 +12,7 @@ import NavBar from "./components/Navbar/NavBar";
 import "./styles/style.scss";
 import CustomSpinner from "./components/Common/Spinner";
 import { fetchAllItems__fun } from "./Redux/Actions/CartAction";
+import { useRatingsStorage } from "./components/customhooks/useRatingsSessionStorage";
 
 const AuthForm = lazy(() => import("./components/AuthForm"));
 const SpecificItem = lazy(() =>
@@ -23,6 +24,7 @@ const Account = lazy(() => import("./components/Account"));
 
 const App = () => {
   const isAuth = useSelector(({ AuthReducer: { authData } }) => authData);
+  useRatingsStorage();
 
   const CartItems = useSelector(({ CartReducer: { cart } }) => cart);
 

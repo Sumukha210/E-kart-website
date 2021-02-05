@@ -4,17 +4,14 @@ import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Ratings from "../Ratings/Ratings";
 import { getSpecificRatings__Api } from "../../Redux/Actions/RatingAction";
-import { useRatingsStorage } from "../customhooks/useRatingsSessionStorage";
 
 const RatingContainer = ({ productId }) => {
   const history = useHistory();
-  const { findRatings } = useRatingsStorage();
   const isAuth = useSelector(({ AuthReducer: { authData } }) => authData);
   const ratings__info = useSelector(
     ({ RatingsReducer: { specificRating } }) => specificRating
   );
   let dispatch = useDispatch();
-  let result = findRatings(productId);
 
   const handleRateProduct = () => {
     if (isAuth) {
@@ -25,7 +22,7 @@ const RatingContainer = ({ productId }) => {
   };
 
   useEffect(() => {
-    if (result && result.length) {
+    if (productId) {
       dispatch(getSpecificRatings__Api(productId));
     }
   }, [productId]);

@@ -24,17 +24,5 @@ export const useRatingsStorage = () => {
     sessionStorage.setItem(localName, JSON.stringify(ratings));
   }, [ratings]);
 
-  const findRatings = id =>
-    ratings.length && id ? ratings.filter(item => item.productId == id) : null;
-
-  const findSumOfRatings = id => {
-    let result = findRatings(id);
-
-    return result
-      ? result.reduce((acc, curr) => acc + Number(curr.ratings), 0) /
-          result.length
-      : null;
-  };
-
-  return { ratings, findSumOfRatings, findRatings };
+  return { ratings };
 };

@@ -1,4 +1,4 @@
-import axios from "axios";
+import { API } from "../../axiosConfig";
 
 export const GET_ALL_RATINGS = "GET_ALL_RATINGS";
 export const GET_SPECIFIC_PRODUCT_RATINGS = "GET_SPECIFIC_PRODUCT_RATINGS";
@@ -15,18 +15,12 @@ export const getSpecificRating__fun = payload => ({
   payload,
 });
 
-// export const setSpecificRating__fun = payload => ({
-//   type: SET_SPECIFIC_PRODUCT_RATINGS,
-//   payload,
-// });
-
 export const createRating__fun = payload => ({ type: CREATE_RATINGS, payload });
 
 export const getAllRatings__Api = () => async dispatch => {
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/getAllRatings`
-    );
+    const { data } = await API.get(`/getAllRatings`);
+
     dispatch(getAllRatings__fun(data));
   } catch (error) {
     console.log("ratings error", error);
@@ -35,10 +29,8 @@ export const getAllRatings__Api = () => async dispatch => {
 
 export const createRatings__Api = ratingsData => async dispatch => {
   try {
-    const { data } = await axios.post(
-      `${process.env.REACT_APP_URL}/ratings`,
-      ratingsData
-    );
+    const { data } = await API.post(`/ratings/`, ratingsData);
+
     dispatch(createRating__fun(data));
   } catch (error) {
     console.log(error);
@@ -47,9 +39,8 @@ export const createRatings__Api = ratingsData => async dispatch => {
 
 export const getSpecificRatings__Api = productId => async dispatch => {
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/getSpecificRatings/${productId}`
-    );
+    const { data } = await API.get(`/getSpecificRatings/${productId}`);
+
     dispatch(getSpecificRating__fun(data));
   } catch (error) {
     console.log(error);

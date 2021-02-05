@@ -53,6 +53,7 @@ I'm using [fakestore Api](https://fakestoreapi.com/) to get product lists.
 - #### Cors
 - #### Redux hooks
 - #### MongoDB Atlas
+- #### bcrypt js
 - #### Axios
 
 <!-- GETTING STARTED -->

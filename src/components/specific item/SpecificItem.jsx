@@ -14,7 +14,7 @@ import {
   removeFromCart__fun,
 } from "../../Redux/Actions/CartAction";
 import RatingContainer from "./RatingContainer";
-import { useRatingsStorage } from "../customhooks/useRatingsSessionStorage";
+import useFindSumOfRatings from "../customhooks/useFindSumOfRatings";
 
 const SpecificItem = () => {
   const { id } = useParams();
@@ -22,9 +22,8 @@ const SpecificItem = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const ref = useRef();
-  const { findSumOfRatings } = useRatingsStorage();
-
-  let result = findSumOfRatings(id);
+  const findSumOfRatings = useFindSumOfRatings(id);
+  let result = findSumOfRatings();
 
   const product = useSelector(({ ProductReducer: { specificProduct } }) => {
     return specificProduct;

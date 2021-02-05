@@ -19,7 +19,7 @@ const NavBar = () => {
   };
 
   useEffect(() => {
-    let user = sessionStorage.getItem("user");
+    let user = localStorage.getItem("profile");
     if (user) {
       dispatch(authData__Fun(JSON.parse(user)));
     }

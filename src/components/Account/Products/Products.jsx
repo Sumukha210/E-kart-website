@@ -11,6 +11,8 @@ const Products = () => {
 
   const [OrderedProducts] = useOrderLocalStoage();
 
+  console.log("local orders", OrderedProducts);
+
   const thStyle = {
     fontSize: "1.1rem",
   };
@@ -25,7 +27,7 @@ const Products = () => {
             </div>
 
             <div className="products__table ">
-              {OrderedProducts.length ? (
+              {OrderedProducts && OrderedProducts.length ? (
                 <Table
                   striped
                   bordered

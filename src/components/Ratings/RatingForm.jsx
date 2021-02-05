@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button";
 import StarRatings from "react-star-ratings";
 import { useOrderLocalStoage } from "../customhooks/useOrderLocalStorage";
 import { createRatings__Api } from "../../Redux/Actions/RatingAction";
-import { useRatingsStorage } from "../customhooks/useRatingsSessionStorage";
 
 const RatingForm = () => {
   const { id } = useParams();
@@ -18,7 +17,7 @@ const RatingForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   let list = [];
-  const { ratings } = useRatingsStorage();
+  const ratings = useSelector(({ RatingsReducer: { ratings } }) => ratings);
 
   OP.length && OP.forEach(item => list.push(...item.productId.split(",")));
 
@@ -70,7 +69,8 @@ const RatingForm = () => {
               Buy now
             </Button>
           </div>
-        ) : ratings
+        ) : ratings &&
+          ratings
             .filter(item => item.userId == isAuth.id)
             .find(item => item.productId == id) ? (
           <h3 className="text-center ">You already rated this product....</h3>

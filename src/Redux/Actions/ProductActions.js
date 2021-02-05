@@ -1,4 +1,4 @@
-import axios from "axios";
+import { API } from "../../axiosConfig";
 
 export const GETALLPRODUCTS = "GETALLPRODUCTS";
 export const GETSPECIFICPRODUCT = "GETSPECIFICPRODUCT";
@@ -33,9 +33,7 @@ export const prodError__fun = payload => ({
 export const getAllProducts__Api = () => async dispatch => {
   dispatch(prodLoading__fun());
   try {
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_URL}/getProducts`
-    );
+    const { data } = await API.get(`/getProducts`);
     dispatch(getAllProducts__fun(data));
   } catch (error) {
     dispatch(prodError__fun(error.response.data));
