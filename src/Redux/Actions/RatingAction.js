@@ -22,9 +22,7 @@ export const getAllRatings__Api = () => async dispatch => {
     const { data } = await API.get(`/getAllRatings`);
 
     dispatch(getAllRatings__fun(data));
-  } catch (error) {
-    console.log("ratings error", error);
-  }
+  } catch (error) {}
 };
 
 export const createRatings__Api = ratingsData => async dispatch => {

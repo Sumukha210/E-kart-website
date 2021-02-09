@@ -11,8 +11,6 @@ const Products = () => {
 
   const [OrderedProducts] = useOrderLocalStoage();
 
-  console.log("local orders", OrderedProducts);
-
   const thStyle = {
     fontSize: "1.1rem",
   };
