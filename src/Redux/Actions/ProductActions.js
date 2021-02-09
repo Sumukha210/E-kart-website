@@ -34,8 +34,9 @@ export const getAllProducts__Api = () => async dispatch => {
   dispatch(prodLoading__fun());
   try {
     const { data } = await API.get(`/getProducts`);
-    dispatch(getAllProducts__fun(data));
+    debugger;
+    data && dispatch(getAllProducts__fun(data));
   } catch (error) {
-    dispatch(prodError__fun(error.response.data));
+    error.response.data && dispatch(prodError__fun(error.response.data));
   }
 };
