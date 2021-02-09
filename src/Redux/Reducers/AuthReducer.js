@@ -16,7 +16,7 @@ export const AuthReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case AUTH__DATA:
       payload &&
-        localStorage.setItem("profile", JSON.stringify({ ...payload }));
+        sessionStorage.setItem("profile", JSON.stringify({ ...payload }));
 
       return {
         ...state,
@@ -45,7 +45,7 @@ export const AuthReducer = (state = initialState, { type, payload }) => {
 
     case LOGOUT:
       localStorage.removeItem("orderDetails");
-      localStorage.removeItem("profile");
+      sessionStorage.removeItem("profile");
       return {
         authData: {},
         loading: false,

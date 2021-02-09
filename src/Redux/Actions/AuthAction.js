@@ -56,5 +56,5 @@ export const logout__Api = () => async dispatch => {
   dispatch(logout__Fun());
   localStorage.removeItem("orderDetails");
   sessionStorage.removeItem("ratings");
-  localStorage.removeItem("profile");
+  sessionStorage.removeItem("profile");
 };
